@@ -8,7 +8,6 @@ from app.geo_resolver.geo_fetcher.ip_info_geo_fetcher import IpInfoGeoFetcher
 GEO_FETCHER: GeoFetcher = None
 geo_fetcher_name = os.environ.get("GEO_FETCHER", "ip-api")
 
-
 async def get_location(request: LocationRequest) -> LocationResponse:
     global GEO_FETCHER
     if not GEO_FETCHER and geo_fetcher_name == "ip-api":

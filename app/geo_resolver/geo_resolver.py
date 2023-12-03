@@ -16,9 +16,6 @@ class GeoResolver:
     ) -> LocationResponse:
         if request.ip in self._cache:
             return self._cache[request.ip]
-
-
-
         geolocation_response = await geo_fetcher.fetch_geolocation(request)
         self._cache[request.ip] = geolocation_response
         return geolocation_response

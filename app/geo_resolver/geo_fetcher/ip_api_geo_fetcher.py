@@ -16,9 +16,9 @@ class IpApiGeoFethcer(GeoFetcher):
                         reqId=request.reqId,
                         countryCode=data["countryCode"],
                         lat=data["lat"],
-                        lon=data["lon"],
+                        lon=data["lon"]
                     )
                 else:
-                    return {"error": "Failed to fetch location data"}
+                    return { "error": "Failed to fetch location data" }
         except aiohttp.ClientError as e:
-            return {"error": str(e)}
+            return { "error": str(e) }

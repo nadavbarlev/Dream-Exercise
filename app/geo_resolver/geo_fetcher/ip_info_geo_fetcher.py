@@ -18,11 +18,11 @@ class IpInfoGeoFetcher(GeoFetcher):
                         reqId=request.reqId,
                         countryCode=data["country"],
                         lat=data["loc"].split(",")[0],
-                        lon=data["loc"].split(",")[1],
+                        lon=data["loc"].split(",")[1]
                     )
                 else:
-                    return {"error": "Failed to fetch location data"}
+                    return { "error": "Failed to fetch location data" }
         except aiohttp.ClientError as e:
-            return {"error": str(e)}
+            return { "error": str(e) }
 
 
