@@ -10,7 +10,6 @@ Location Service Exercise
 
 ```
 python -m venv .venv
-pip install -r requirements.txt
 ```
 
 ### Install dependencies
