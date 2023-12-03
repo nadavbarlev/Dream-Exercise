@@ -7,7 +7,8 @@ from app.models.location_response import LocationResponse
 class IpInfoGeoFetcher(GeoFetcher):
     async def fetch_geolocation(self, request: LocationRequest) -> LocationResponse:
         try:
-            access_token = ""
+            # TODO: Implement a more secure way to store and handle the access token
+            access_token = "b68896fb1f154e"
             async with self.session.get(
                 f"http://ipinfo.io/{request.ip}?token={access_token}"
             ) as response:
@@ -15,11 +16,13 @@ class IpInfoGeoFetcher(GeoFetcher):
                     data = await response.json()
                     return LocationResponse(
                         reqId=request.reqId,
-                        countryCode=data["countryCode"],
-                        lat=data["lat"],
-                        lon=data["lon"],
+                        countryCode=data["country"],
+                        lat=data["loc"].split(",")[0],
+                        lon=data["loc"].split(",")[1],
                     )
                 else:
                     return {"error": "Failed to fetch location data"}
         except aiohttp.ClientError as e:
             return {"error": str(e)}
+
+
